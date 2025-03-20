@@ -41,14 +41,24 @@ Ensure you have the following installed on your system:
    - MySQL Database runs on: `localhost:3306`  
 
 ### API Endpoints  
-| Method | Endpoint          | Description                |
-|--------|------------------|----------------------------|
-| POST   | `/auth/signup`   | User registration         |
-| POST   | `/auth/login`    | User login                |
-| GET    | `/incidents`     | Get all incidents         |
-| POST   | `/incidents`     | Create a new incident     |
-| PUT    | `/incidents/{id}` | Update an incident        |
-| DELETE | `/incidents/{id}` | Delete an incident        |
+
+#### User APIs  
+| Method  | Endpoint           | Description                |
+|---------|-------------------|----------------------------|
+| POST    | `/api/users/register` | Register a new user         |
+| GET     | `/api/users/{email}` | Get user details by email  |
+| POST    | `/api/users/validate` | Validate user credentials  |
+| DELETE  | `/api/users/{email}` | Delete a user by email     |
+
+#### Incident APIs  
+| Method  | Endpoint                | Description                |
+|---------|------------------------|----------------------------|
+| GET     | `/api/incidents`        | Test API (Hello World)     |
+| POST    | `/api/incidents`        | Create a new incident      |
+| GET     | `/api/incidents/user/{email}` | Get incidents by user email  |
+| GET     | `/api/incidents/{incidentId}` | Get incident details by ID  |
+| PUT     | `/api/incidents/{incidentId}` | Update an existing incident |
+| DELETE  | `/api/incidents/{incidentId}` | Delete an incident by ID   |
 
 ### Contributing  
 Feel free to fork this repo and submit pull requests!  

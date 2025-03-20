@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Incident Management System</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+
+        button {
+            padding: 6px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .incident-details {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 500px;
+        }
+
+        .add-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            right: 60px;
+            height: 40px;
+            width: 40px;
+        }
+
+        .edit-icon,
+        .delete-icon {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        .popup {
+            display: none;
+        }
+
+        .popup.visible {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="add-button">+</button>
+
+    <!-- <div class="popup-overlay"></div> -->
+    <div class="popup" id="popup">
+        <h3>Fill Details</h3>
+        <form id="popupForm">
+            <input type="text" id="firstName" placeholder="First Name">
+            <input type="text" id="lastName" placeholder="Last Name">
+            <input type="email" id="email" placeholder="Email">
+            <input type="text" id="address" placeholder="Address">
+            <input type="text" id="country" placeholder="Country">
+            <input type="text" id="state" placeholder="State">
+            <input type="text" id="city" placeholder="City">
+            <input type="text" id="pincode" placeholder="Pincode">
+            <input type="text" id="mobileNumber" placeholder="Mobile Number">
+            <input type="text" id="reporterName" placeholder="Reporter Name">
+            <input type="text" id="incidentDetails" placeholder="Incident Details">
+            <select id="priority">
+                <option value="">Select Priority</option>
+                <option value="HIGH">HIGH</option>
+                <option value="MEDIUM">MEDIUM</option>
+                <option value="LOW">LOW</option>
+            </select>
+            <select id="status">
+                <option value="">Select Status</option>
+                <option value="OPEN">OPEN</option>
+                <option value="IN_PROGRESS">IN PROGRESS</option>
+                <option value="CLOSED">CLOSED</option>
+            </select>
+            <button type="button" id="closePopup">Close</button>
+            <button type="button" id="addIncident">Add Incident</button>
+        </form>
+    </div>
+
+    <div id="editIncidentModal" style="display:none;">
+        <div class="modal-content">
+            <h2>Edit Incident</h2>
+            <form id="editIncidentForm">
+                <label for="incidentIdEdit">Incident ID</label>
+                <input type="text" id="incidentIdEdit" disabled>
+
+                <label for="reportedDateTimeEdit">Reported Date</label>
+                <input type="text" id="reportedDateTimeEdit" disabled>
+
+                <label for="incidentDetailsEdit">Incident Details</label>
+                <textarea id="incidentDetailsEdit" required></textarea>
+
+                <label for="reporterNameEdit">Reporter Name</label>
+                <textarea id="reporterNameEdit" required></textarea>
+
+                <label for="statusEdit">Status</label>
+                <select id="statusEdit">
+                    <option value="OPEN">OPEN</option>
+                    <option value="IN_PROGRESS">IN_PROGRESS</option>
+                    <option value="CLOSED">CLOSED</option>
+                </select>
+
+                <label for="priorityEdit">Priority</label>
+                <select id="priorityEdit">
+                    <option value="HIGH">HIGH</option>
+                    <option value="MEDIUM">MEDIUM</option>
+                    <option value="LOW">LOW</option>
+                </select>
+                <button id="close-btn">&times;</button>
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+
+    <h1>Incident Management System</h1>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search by Incident ID">
+        <button class="search-container">Search</button>
+    </div>
+
+    <table id="incidentTable">
+        <thead>
+            <tr>
+                <th>Incident ID</th>
+                <th>Subject</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <div class="incident-details" id="detailsPopup">
+        <h2>Incident Details</h2>
+        <p id="incidentIdDetail"></p>
+        <p id="subjectDetail"></p>
+        <p id="descriptionDetail"></p>
+        <p id="dateDetail"></p>
+        <p id="statusDetail"></p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+
+
+    <script type="module" src="incident.js"></script>
+
+</body>
+
+</html>
